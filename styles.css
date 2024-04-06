@@ -1,0 +1,11 @@
+.ytp-gradient-top,
+.ytp-chrome-top,
+.ytp-chrome-bottom {
+    display: none !important;
+}
+
+body .ytp-gradient-top.is-shown,
+body .ytp-chrome-top.is-shown,
+body .ytp-chrome-bottom.is-shown {
+    display: block !important;
+}
