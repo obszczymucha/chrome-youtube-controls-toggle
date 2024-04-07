@@ -23,6 +23,9 @@
     }
   ],
   "description": "Toggle video controls visibility on YouTube.",
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
   "manifest_version": 3,
   "name": "YouTube Video Controls Toggle",
   "permissions": [

@@ -30,14 +30,12 @@ function hide(store) {
   chrome.storage.sync.set({ controlsHidden: true });
 }
 
-// Load the saved state and apply it
 function isHidden(callback) {
   chrome.storage.sync.get(['controlsHidden'], function(result) {
     callback(result.controlsHidden);
   });
 }
 
-// Listen for messages from the background script
 chrome.runtime.onMessage.addListener(
   function(request, _sender, sendResponse) {
     if (request.toggle) {
@@ -46,7 +44,7 @@ chrome.runtime.onMessage.addListener(
         const toggle = hidden === true && show || hide;
         const f = request.store && toggle || set;
         f(request.store);
-        sendResponse({ status: "Controls toggled" });
+        sendResponse({ status: "TOGGLE" });
         return;
       });
 
@@ -54,9 +52,8 @@ chrome.runtime.onMessage.addListener(
     };
 
     if (request.hide) {
-      console.log("Trying to hide" + request.origin || ".");
       hide();
-      sendResponse({ status: "Hello" });
+      sendResponse({ status: "HIDE" });
       return;
     }
   }
