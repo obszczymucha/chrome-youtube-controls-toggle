@@ -8,7 +8,7 @@ function setStyle(remove) {
 
     if (remove === true) {
       element.classList.remove(IS_SHOWN);
-    } else if (!remove && !isShown) {
+    } else if (remove !== true && !isShown) {
       element.classList.add(IS_SHOWN);
     }
   });
@@ -38,7 +38,7 @@ function isHidden(callback) {
 
 chrome.runtime.onMessage.addListener(
   function(request, _sender, sendResponse) {
-    if (request.toggle) {
+    if (request.message === "TOGGLE") {
       isHidden((hidden) => {
         const set = hidden === true && hide || show;
         const toggle = hidden === true && show || hide;
@@ -49,12 +49,6 @@ chrome.runtime.onMessage.addListener(
       });
 
       return true;
-    };
-
-    if (request.hide) {
-      hide();
-      sendResponse({ status: "HIDE" });
-      return;
     }
   }
 );
